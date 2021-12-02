@@ -6,8 +6,10 @@ on:
         description: "Extra Resolve Options"
         type: string
         required: false
-env:
-  EXTRA_RESOLVE_OPTIONS: ${{ github.event.inputs.extra_resolve_options }}
+      extra_test_command:
+        description: "Extra Test Command"
+        type: string
+        required: false
 jobs:
   valgrind:
     name: Valgrind 3.17.0
@@ -21,10 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Configure
+        env:
+          EXTRA_RESOLVE_OPTIONS: ${{ inputs.extra_resolve_options }}
         run: python3 waf configure --git_protocol=git@ $EXTRA_RESOLVE_OPTIONS
       - name: Build
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
       - name: Valgrind Test
-        run: python3 waf --run_tests --run_cmd="valgrind %s"
+        env:
+          EXTRA_TEST_COMMAND: ${{ inputs.extra_test_command }}
+        run: python3 waf --run_tests --run_cmd="valgrind %s $EXTRA_TEST_COMMAND"
