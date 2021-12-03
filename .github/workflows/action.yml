@@ -6,10 +6,11 @@ on:
         description: "Extra Resolve Options"
         type: string
         required: false
-      extra_test_command:
-        description: "Extra Test Command"
+      test_command:
+        description: "Test Command"
         type: string
         required: false
+        default: python3 waf --run_tests --run_cmd="valgrind %s"
 jobs:
   valgrind:
     name: Valgrind 3.17.0
@@ -25,12 +26,12 @@ jobs:
       - name: Configure
         env:
           EXTRA_RESOLVE_OPTIONS: ${{ inputs.extra_resolve_options }}
-        run: python3 waf configure --git_protocol=git@ $EXTRA_RESOLVE_OPTIONS
+        run: python3 waf configure --git_protocol=git@ ${{ env.EXTRA_RESOLVE_OPTIONS }}
       - name: Build
         run: |
           echo "::add-matcher::.github/gcc-problem-matcher.json"
           python3 waf
       - name: Valgrind Test
         env:
-          EXTRA_TEST_COMMAND: ${{ inputs.extra_test_command }}
-        run: python3 waf --run_tests --run_cmd="valgrind %s $EXTRA_TEST_COMMAND"
+          TEST_COMMAND: ${{ inputs.test_command }}
+        run: ${{ env.TEST_COMMAND }}
