@@ -8,6 +8,10 @@ Latest
 ------
 * tbd
 
+3.0.0
+-----
+* Major: Added a retry step at configure time.
+
 2.0.0
 -----
 * Major: Changed extra_test_command input to full test_command.
