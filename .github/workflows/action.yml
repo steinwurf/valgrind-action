@@ -23,7 +23,7 @@ jobs:
         - /home/buildbot/.ssh:/root/.ssh
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Configure
         env:
           EXTRA_RESOLVE_OPTIONS: ${{ inputs.extra_resolve_options }}
