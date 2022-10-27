@@ -8,6 +8,11 @@ Latest
 ------
 * tbd
 
+5.0.0
+-----
+* Major: Upgraded Valgrind to version 3.18.1
+* Major: Upgraded actions/checkout to v3
+
 4.0.0
 -----
 * Major: Add a max execution-time of 45 minutes
