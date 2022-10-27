@@ -17,7 +17,7 @@ jobs:
     name: Valgrind 3.18.1
     runs-on: [self-hosted, docker, builder]
     container:
-      image: ghcr.io/steinwurf/valgrind-3.18.1:latest
+      image: ghcr.io/steinwurf/valgrind-3.18.1:1.0.0
       options: --user 0:0
       volumes:
         - /home/buildbot/.ssh:/root/.ssh
