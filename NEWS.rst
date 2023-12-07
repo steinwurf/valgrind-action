@@ -8,6 +8,10 @@ Latest
 ------
 * tbd
 
+6.0.0
+-----
+* Major: Upgraded Valgrind to version 3.19.0 due to ubuntu 23.04 bump
+
 5.0.0
 -----
 * Major: Upgraded Valgrind to version 3.18.1
